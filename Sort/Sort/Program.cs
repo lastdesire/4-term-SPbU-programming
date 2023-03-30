@@ -12,19 +12,30 @@ public static class Sort
             var rank = comm.Rank;
             var size = comm.Size;
             var list = new List<int>();
-            
+
+            if (rank == 0)
+            {
+                Console.WriteLine("This program performs even-odd sorting.");
+                Console.WriteLine("The library is used MPI.NET.");
+                Console.WriteLine("Checking input and output path args...");
+            }
             switch (rank)
             {
                 case 0 when 2 != args.Length:
                     Console.WriteLine("Expected paths to input and output files as arguments.");
+                    comm.Scatter(Enumerable.Repeat(0, size).ToArray(), 0); 
                     return -1;
                 case 0:
                 {
+                    Console.WriteLine("Accepted.");
+                    Console.WriteLine($"Your input path: {args[0]}.");
+                    Console.WriteLine($"Your output path: {args[1]}.");
+                    
                     list = ListReader.GetIntListFromFile(args[0]);
 
                     if (ListReader.WithError)
                     {
-                        Console.WriteLine($"Error trying read data from file with path {args[0]}");
+                        Console.WriteLine($"Error trying read data from file with path {args[0]}.");
                         comm.Scatter(Enumerable.Repeat(0, size).ToArray(), 0); 
                         return -1;
                     }
@@ -35,7 +46,7 @@ public static class Sort
                 default:
                 {
                     var scattered = comm.Scatter<int>(0);
-                    if (scattered == 0)
+                    if (0 == scattered)
                     {
                         return -1;
                     }
@@ -63,9 +74,33 @@ public static class Sort
             {
                 scatteredList = comm.Scatter<List<int>>(0);
             }
-
+            
+            
+            // * with brackets enter !!!.
+            // (*) with arrow send data to * and waiting to receive back from * (changed).
+            // (*) with no arrow do not send data.
+            // * except first one receive data, change it and send back to (*) (in else branch).
+            // Odd case (1 step, for example):
+                // Even size (4, for example):
+                    // (*) ---> *      (*) ---> *
+                    // * change data...
+                    // (*) <--- *      (*) <--- *
+                // Odd size (5, for example):
+                    // (*) ---> *      (*) ---> *      (*)
+                    // * change data...
+                    // (*) <--- *      (*) <--- *      (*)
+            // Even case:
+                // Even size:
+                    // *      (*) ---> *      (*)
+                    // * change data (except for the first one)...
+                    // *      (*) <--- *      (*)
+                // Odd size:
+                    // *      (*) ---> *      (*) ---> *
+                    // * change data (except for the first one)...
+                    // *      (*) <--- *      (*) <--- *
             for (var i = 1; i <= size; i++)
             {
+                // !!!
                 if ((i + rank + 1) % 2 == 0 )
                 {
                     if (rank + 1 != size)
@@ -88,23 +123,25 @@ public static class Sort
 
             var result = new List<int>();
             result = result.Concat(scatteredList).ToList();
-            if (rank == 0)
+            if (0 == rank)
             {
                 for (var i = 1; i < size; i++)
                 {
                     result = result.Concat(comm.Receive<List<int>>(i, 0)).ToList();
                 }
-
-                foreach (var item in result)
+                
+                ListReader.WriteIntListInFile(result, args[1]);
+                if (ListReader.WithError)
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine($"Error trying write data to file with path {args[1]}.");
+                    return -1;
                 }
+                Console.WriteLine("Done.");
+                return 0;
             }
-            else
-            {
-                comm.Send(scatteredList, 0, 0);
-            }
-            
+
+            comm.Send(scatteredList, 0, 0);
+
             return 0;
         }
     }
