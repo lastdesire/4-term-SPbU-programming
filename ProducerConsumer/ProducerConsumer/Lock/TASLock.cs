@@ -1,7 +1,7 @@
 ﻿// Source: https://github.com/Stanislav-Sartasov/spsu-mm-se-programming/tree/main/Fourth%20term/LocksContinued/LocksContinued
 namespace ProducerConsumer.Lock
 {
-    class TASLock : ILock // test-and-set / compare-and-set / compare-exchange
+    public class TASLock : ILock // test-and-set / compare-and-set / compare-exchange
     {
         private volatile int _state = 0;
 
