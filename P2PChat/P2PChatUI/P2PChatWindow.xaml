@@ -1,0 +1,18 @@
+﻿<Window x:Class="P2PChatUI.P2PChatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="P2PChatWindow" Height="500" Width="1000"
+        Closing="Disconnect"> <!-- https://learn.microsoft.com/en-us/dotnet/api/system.windows.window.closing?view=windowsdesktop-7.0 -->
+    <Grid Background="#ACDACC">
+        <ScrollViewer>
+            <TextBlock x:Name="ChatTextBox" Text="Hellox" Height="100" Margin="0,0,0,100" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        </ScrollViewer>
+        <DockPanel Grid.Column="0" Grid.Row="0">
+            <TextBox x:Name="ChatInputTextBox" HorizontalAlignment="Left" Margin="30,0,0,50" Width="700" VerticalAlignment="Bottom" FontSize="18.5"/>
+            <Button Content="Send" HorizontalAlignment="Right" Margin="0,0,80,50" VerticalAlignment="Bottom" FontSize="17" Width="100" Click="SendMessage"/>
+        </DockPanel>
+    </Grid>
+</Window>

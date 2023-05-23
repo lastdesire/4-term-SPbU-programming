@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2PChat", "P2PChat\P2PChat.csproj", "{0DAF7E86-59B8-4483-BCDD-C94305A49600}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2PChatUI", "P2PChatUI\P2PChatUI.csproj", "{51BEFD1E-3802-458C-B18A-1E592460059C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DAF7E86-59B8-4483-BCDD-C94305A49600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DAF7E86-59B8-4483-BCDD-C94305A49600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DAF7E86-59B8-4483-BCDD-C94305A49600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DAF7E86-59B8-4483-BCDD-C94305A49600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51BEFD1E-3802-458C-B18A-1E592460059C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51BEFD1E-3802-458C-B18A-1E592460059C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51BEFD1E-3802-458C-B18A-1E592460059C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51BEFD1E-3802-458C-B18A-1E592460059C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

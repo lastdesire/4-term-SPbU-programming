@@ -1,0 +1,33 @@
+﻿<Window x:Class="P2PChatUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="1000">
+    <Grid Background="#ACDACC">
+        <DockPanel Grid.Column="0" Grid.Row="0">
+            <Label Content="Your IP (from 127.0.0.1 to 127.255.255.255):" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,30,0,0" FontSize="18"/>
+            <TextBox x:Name="UserIp" HorizontalAlignment="Center" Margin="0,35,0,0" Width="300" VerticalAlignment="Top" FontSize="18"/>
+        </DockPanel>
+        
+        <DockPanel Grid.Column="0" Grid.Row="0">
+            <Label Content="Your port (from 3000 to 65535):" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,70,0,0" FontSize="18"/>
+            <TextBox x:Name="UserPort" HorizontalAlignment="Center" Margin="92,75,0,0" Width="300" VerticalAlignment="Top" FontSize="18"/>
+        </DockPanel>
+        
+        <DockPanel Grid.Column="0" Grid.Row="0">
+            <Label Content="User IP (from 127.0.0.1 to 127.255.255.255):" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,110,0,0" FontSize="18"/>
+            <TextBox x:Name="OtherUserIp" HorizontalAlignment="Center" Margin="0,115,0,0" Width="300" VerticalAlignment="Top" FontSize="18"/>
+        </DockPanel>
+        
+        <DockPanel Grid.Column="0" Grid.Row="0">
+            <Label x:Name="OtherUserPortLabel" Content="Other user port (from 3000 to 65535):" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,150,0,0" FontSize="18"/>
+            <TextBox x:Name="OtherUserPort" HorizontalAlignment="Center" Margin="43,155,0,0" Width="300" VerticalAlignment="Top" FontSize="18"/>
+        </DockPanel> 
+        
+        <Button Content="Create the chat" HorizontalAlignment="Left" Margin="40,195,0,0" VerticalAlignment="Top" FontSize="18" Width="180" Click="CreateButtonClick"/>
+        <Button Content="Join the chat" HorizontalAlignment="Left" Margin="40,235,0,0" VerticalAlignment="Top" FontSize="18" Width="180" Click="JoinButtonClick"/>
+        <Label x:Name="ErrorLabel" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="380,195,0,0" FontSize="18"/>
+    </Grid>
+</Window>
