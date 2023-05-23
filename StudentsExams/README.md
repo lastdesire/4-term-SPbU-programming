@@ -23,3 +23,16 @@ The number of clients resulting in a 30-second timeout failure: 800.
 > Add --- 90%, Contains --- 9%, Remove --- 1%.
 
 Approximate number of entries in the dictionary: 725.
+
+## StripedCuckooHashSet
+![StripedCuckooHashSet-Add100-150](./Boxplots/StripedCuckooHashSet-Add100-150.png)
+![StripedCuckooHashSet-Contains100-150](./Boxplots/StripedCuckooHashSet-Contains100-150.png)
+![StripedCuckooHashSet-Remove100-150](./Boxplots/StripedCuckooHashSet-Remove100-150.png)
+
+The number of clients resulting in a 30-second timeout failure: xxx.
+* Number of Threads (users): 100/150.
+* Ramp-up period (seconds): 0.
+* Loop Count: 10.
+> Add --- 90%, Contains --- 9%, Remove --- 1%.
+
+Approximate number of entries in the dictionary: xxx.
