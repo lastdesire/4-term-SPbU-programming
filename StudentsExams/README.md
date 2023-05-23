@@ -11,6 +11,6 @@ Box diagrams of the distribution of query execution of each type in the absence 
 * Ramp-up period (seconds): 0
 * Loop Count: 10
 
-![Text](./Boxplots/Add100-150.png)
-![Text](./Boxplots/Contains100-150.png)
-![Text](./Boxplots/Remove100-150.png)
+![CoarseHashSetAdd100-150](./Boxplots/CoarseHashSetAdd100-150.png)
+![CoarseHashSetContains100-150](./Boxplots/CoarseHashSetContains100-150.png)
+![CoarseHashSetRemove100-150](./Boxplots/CoarseHashSetRemove100-150.png)
