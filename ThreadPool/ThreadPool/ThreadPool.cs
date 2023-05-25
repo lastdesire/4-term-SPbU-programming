@@ -6,7 +6,7 @@ public class ThreadPool : IDisposable
 
     private Thread[] _threads;
     private Queue<Action> _tasks;
-    private volatile bool _isDisposed;
+    private static volatile bool _isDisposed;
     private object _sync;
 
     public ThreadPool(uint numberOfThreads)
