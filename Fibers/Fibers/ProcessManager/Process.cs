@@ -3,6 +3,7 @@ namespace Fibers.ProcessManager
 
     public class Process
     {
+	// For generating random limit of the number of intervals, priority levels number, work and pause intervals.
         private static readonly Random Rng = new Random();
 
         private const int LongPauseBoundary = 10000;
@@ -12,6 +13,8 @@ namespace Fibers.ProcessManager
         private const int WorkBoundary = 1000;
 
         private const int IntervalsAmountBoundary = 10;
+	
+	// Maximum number of possible priorities.
         private const int PriorityLevelsNumber = 10;
 
         private readonly List<int> _workIntervals = new List<int>();
@@ -30,7 +33,7 @@ namespace Fibers.ProcessManager
                             : ShortPauseBoundary));
             }
 			
-			Priority = Rng.Next(PriorityLevelsNumber) + 1;
+	    Priority = Rng.Next(PriorityLevelsNumber) + 1;
         }
 
         public void Run()
@@ -44,13 +47,14 @@ namespace Fibers.ProcessManager
                     Fibers.ProcessManager.ProcessManager.Switch(false);
                 } while ((DateTime.Now - pauseBeginTime).TotalMilliseconds < _pauseIntervals[i]); // I/O emulation
             }
+
             Fibers.ProcessManager.ProcessManager.Switch(true);
         }
 
-		public int Priority
-		{
-			get; private set;
-		}
+	public int Priority
+	{
+	    get; private set;
+	}
 		
         public int TotalDuration
         {

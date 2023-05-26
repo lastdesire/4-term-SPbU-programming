@@ -106,11 +106,13 @@ public class Client
     private void Listen()
     {
         _isListening = true;
+        // Listening...
         while (_isListening)
         {
             var data = "";
             var bytes = new byte[1024];
             int bytesRec;
+            // New response from some client!
             try
             {
                 bytesRec = _socket.Receive(bytes);
@@ -126,17 +128,21 @@ public class Client
             
             switch (dataArray[0])
             {
+                // New user in chat where this user presents.
                 case "add":
                     _usersInChat.Add(dataArray[1]);
                     _wpfPrint($"Welcome, [{dataArray[1]}]!"); 
                     break;
+                // Other user in chat (where this user presents) leaved.
                 case "remove":
                     _usersInChat.Remove(dataArray[1]);
                     _wpfPrint ($"Bye, [{dataArray[1]}]...");
                     break;
+                // Message from other user.
                 case "message":
                     _wpfPrint ($"[{dataArray[1]}]: " +dataArray[2]);
                     break;
+                // It is time to stop working.
                 case "_":
                     return;
             }
@@ -175,6 +181,7 @@ public class Client
     {
         _isListening = false;
         
+        // We need to tell thread that there is time to stop working (posible internal eternal waiting response without it [line 118]).
         var endPoint = new IPEndPoint(IPAddress.Parse(Ip), Port);
         var endListenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         endListenSocket.Connect(endPoint);
