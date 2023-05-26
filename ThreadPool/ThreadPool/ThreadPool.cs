@@ -6,7 +6,7 @@ public class ThreadPool : IDisposable
 
     private Thread[] _threads;
     private Queue<Action> _tasks;
-    private volatile bool _isDisposed;
+    private static volatile bool _isDisposed;
     private object _sync;
 
     public ThreadPool(uint numberOfThreads)
@@ -17,7 +17,7 @@ public class ThreadPool : IDisposable
         _threads = new Thread[Capacity];
         _tasks = new Queue<Action>();
         _isDisposed = false;
-        
+        if (!_isDisposed) return;
         for (var i = 0; i < Capacity ; i++)
         {
             _threads[i] = new Thread(ExecTasks);
@@ -81,8 +81,6 @@ public class ThreadPool : IDisposable
 
     public void Dispose()
     {
-        _isDisposed = true;
-        
         Monitor.Enter(_sync);
         try
         {
@@ -97,5 +95,7 @@ public class ThreadPool : IDisposable
         {
             thread.Join();
         }
+        
+        _isDisposed = true;
     }
 }
